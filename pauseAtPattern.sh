@@ -7,14 +7,10 @@ exit 1
 fi
 
 # set log file
-if [ -z $2 ] ; then 
-log=/var/log/YaST2/y2log
-else
-log=$2
-fi
+[ -z $2 ] && log=/var/log/YaST2/y2log || log=$2
 
-if [ ! -e $log ] ; then
-echo "$log does not exist"
+if [ ! -f $log ] ; then
+echo "$log does not exist or is not a file"
 exit 1 
 fi
 
