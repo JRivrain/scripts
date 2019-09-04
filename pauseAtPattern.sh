@@ -18,11 +18,11 @@ while : ; do
     grep $1 $log && match=1	
     if (( match == 1 )) ; then
         PIDS=`ps -ef |egrep -i "yast|installation" |egrep -v "grep|$0" |awk '{print $2}' |xargs`
-        kill -SIGSTOP $PIDS
+        kill -19 $PIDS #freeze installer
         echo "installer paused. type r to resume when ready (eg after using tty5 to upload logs)."
         read resume
         if [ $resume =  "r" ] ; then
-            kill -SIGCONT $PIDS 
+            kill -18 $PIDS #resume installer 
 	        break
         fi
 	sleep 0.5
