@@ -25,8 +25,8 @@ while : ; do
             kill -18 $PIDS #resume installer 
 	        break
         fi
-	sleep 0.5
     fi
+    sleep 0.5
 done
 
 exit 0
