@@ -56,7 +56,7 @@ local_fs() {
     echo "/- /etc/auto.misc --timeout=5" >> /etc/auto.master
     echo "/mnt -fstype=ext2 :/root/fakedd" >> /etc/auto.misc
     systemctl restart autofs
-    ls /mnt/lost+found
+    ls -d /mnt/lost+found
     set +x
 }
 
