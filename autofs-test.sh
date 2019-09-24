@@ -24,7 +24,7 @@ nfs_test() {
 set -ex
     systemctl list-unit-files |grep nfsserver || zypper in -y nfs-kernel-server
     echo "/srv/nfs *(fsid=0,rw,no_root_squash,sync,no_subtree_check)" >>/etc/exports
-    echo "/nfs /etc/auto.nfs --timeout=10" >>/etc/auto.master
+    echo "/nfs /etc/auto.nfs --timeout=5" >>/etc/auto.master
     echo "localnfs -fstype=nfs localhost:/srv/nfs" >> /etc/auto.nfs
     systemctl restart autofs nfsserver
     touch /nfs/localnfs/testfile
@@ -42,7 +42,7 @@ samba_test() {
         guest ok = yes
         read only = No
         create mask = 777" >> /etc/samba/smb.conf
-    echo "/cifs /etc/auto.smb --timeout=10" >> /etc/auto.master
+    echo "/cifs /etc/auto.smb --timeout=5" >> /etc/auto.master
     systemctl restart autofs smb
     touch /cifs/localhost/stuff/testfile
     ls /srv/smb/testfile
@@ -53,7 +53,7 @@ local_fs() {
     set -ex
     dd if=/dev/zero of=/root/fakedd bs=1M count=50
     mke2fs -t ext2 /root/fakedd
-    echo "/- /etc/auto.misc --timeout=10" >> /etc/auto.master
+    echo "/- /etc/auto.misc --timeout=5" >> /etc/auto.master
     echo "/mnt -fstype=ext2 :/root/fakedd" >> /etc/auto.misc
     systemctl restart autofs
     ls /mnt/lost+found
@@ -63,7 +63,7 @@ local_fs() {
 nfs_test &>$LOG && echo "NFS test passed" || echo "NFS test failed"
 samba_test &>>$LOG && echo "Samba test passed" || echo "Samba test failed"
 local_fs &>>$LOG && echo "Local FS test passed" || echo "Local FS test failed"
-sleep 10
+sleep 5
 cleanup &>>$LOG
 
 
