@@ -3,6 +3,7 @@
 LOG=$1
 [ -z $LOG ] && LOG=/dev/null
 
+# Cleanup to be executed at the end or if previous run failed 
 cleanup() {
         set -x
         rm -rf /srv/{smb,nfs}
@@ -16,7 +17,7 @@ cleanup() {
         set +x
 }
 
-grep localnfs /etc/auto.nfs && cleanup
+[ -d /srv/nfs ]  && cleanup
 mkdir /srv/{smb,nfs}; chmod 777 /srv/smb
 
 nfs_test() {
