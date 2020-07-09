@@ -11,7 +11,7 @@ print "name of lv: $profile->{partitioning}->{drive}[0]->{partitions}->{partitio
 
 foreach my $part (@{$profile->{partitioning}->{drive}[0]->{partitions}->{partition}}) {
 	my $count = 0;
-	print "$part->{lv_name} is mounted on $part->{mount} and has a size of $part->{size}\n";
+	print "$part->{lv_name} will be mounted on $part->{mount} and will have a size of $part->{size}\n";
 	$count++;
 }
 
