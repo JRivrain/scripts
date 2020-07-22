@@ -3,9 +3,8 @@ use warnings;
 use Data::Dumper;
 
 
-# for each PV, I want the number of physical extents in each PV that are part of the VG..
-# This will allow me to sum up all physical extents of the VG, across all PVs.
-# So let's create a hash like that contains an array of sizes for each PV, in each VG.
+# I want to sum up the physical extents across all Physical Volumes within each Volume
+# Group of a given system. So it should looke like:$PVs_in_VGs{$vg} = [@extents_in_vg]
 
 my @PV = split(/\n/, `pvdisplay |grep "PV Name" |awk '{print \$3}'`);
 my @VG = split(/\n/, `vgdisplay |grep "VG Name" |awk '{print \$3}'`);
