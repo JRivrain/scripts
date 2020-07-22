@@ -4,7 +4,7 @@ use Data::Dumper;
 
 
 # I want to sum up the Physical Extents across all Physical Volumes within each Volume
-# Group of a given system. So it should looke like:$PVs_in_VGs{$vg} = [@extents_in_vg]
+# Group of a given system. So it should looke like:$PEs_in_VGs{$vg} = [@extents_in_vg]
 
 my @PV = split(/\n/, `pvdisplay |grep "PV Name" |awk '{print \$3}'`);
 my @VG = split(/\n/, `vgdisplay |grep "VG Name" |awk '{print \$3}'`);
