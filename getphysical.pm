@@ -27,6 +27,8 @@ foreach my $vg (@VG) {
 
 }
 
+my $total_PEs      = sum(values %PEs_in_PVs);
+
 $Data::Dumper::Sortkeys = 1; 
 print Dumper %PEs_in_VGs;
 
