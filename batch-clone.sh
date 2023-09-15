@@ -2,7 +2,7 @@
 
 # Parse args
 if [[ $# != [23] ]] ; then
-echo "Usage: $0 \"<Github PR or branch>\" \"<url with jobs to clone>\" \"<optional args>\""
+echo "Usage: $0 \"<Github PR or branch>\" \"<url with jobs to clone>\" \"<optional args>\" (with quotes)"
 exit 1
 fi
 
